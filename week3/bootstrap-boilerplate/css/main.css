@@ -1,0 +1,20 @@
+#content{
+    margin-top: 70px;
+}
+
+.profile{
+    margin-right: 20px;
+    height: 150px;
+}
+
+#newPerson{
+    position: relative;
+}
+
+#newPerson > .btn-lg{
+    top:30%;
+    position:absolute;
+    left:50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
