@@ -78,9 +78,56 @@
     });
   }
 
+
+  function getFormData(id){
+    var data = {},
+    form = $(id),
+    viewArr = form.serializeArray(),
+    valid = true;
+
+    $.each(viewArr, function(i,d){
+      data[viewArr[i].name] = viewArr[i].value;
+      if(viewArr[i].value === ""){
+        $("input[name="+viewArr[i].name+"]").parent().parent().addClass("has-error");
+        valid = false;
+      }
+    });
+    if(valid){
+      return data;
+    }else{
+      return {};
+    }
+  }
+
+  function clearForm(id){
+    $(id).find("input[type=text], textarea").val("");
+  }
+
+
+  function handleNewUser(){
+    $("#save_user").click(function(){
+        var data = getFormData("#new_user_form"),
+        person = new models.Person();
+        if (!_.isEmpty(data)) {
+          data.id = generateUUID();
+          data.picture = "http://web1.crafthub.me/assets/placeholder-50x50.png";
+          person.setDetails(data)
+          personManager.addPerson(person);
+          $("#content").append(createCard(person));
+          removePerson();
+          $('#myModal').modal('hide').on('hidden.bs.modal', function (e) {
+            clearForm("#new_user_form");
+          });
+        }
+    });
+  }
+
+
   $('document').ready(function(){
     loadData();
     createPersonList("#content");
+    handleNewUser();
+
     removePerson();
   });
 

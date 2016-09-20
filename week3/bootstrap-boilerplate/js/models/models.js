@@ -79,7 +79,7 @@
 
     PersonManager.prototype.addPerson = function(person){
         if (person instanceof Person)  {
-            // window.console.log("Entering Person: "+person.printPerson());
+            window.console.log("Entering Person: "+person.printPerson());
             var id;
             id = this.persons.length;
             //Pushes item to add it to the end of the array
