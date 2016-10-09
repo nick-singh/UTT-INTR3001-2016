@@ -38,7 +38,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">
+            <?php
+              echo "Hello";
+              ?>
+          </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -75,7 +79,6 @@
               <h4 class="modal-title" id="myModalLabel">New Person</h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal">
               <form class="form-horizontal" id="new_user_form">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">First Name</label>
@@ -129,6 +132,5 @@
     <script type="text/javascript" src = "js/models/models.js"></script>
     <script type="text/javascript" src = "js/data/data.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
-
   </body>
 </html>

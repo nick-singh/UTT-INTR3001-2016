@@ -79,6 +79,9 @@
 	window.console.log(p3.printPerson());
 
 
+// 4 marks
+
+
 	//window.console.log(p.getCountry());
 	//p.setCountry("Trinidad");
 	//window.console.log(p.getCountry());
