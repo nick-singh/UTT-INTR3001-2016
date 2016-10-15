@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' ></script>
+		<script type="text/javascript">
+			jQuery(window).ready(function(){  
+				jQuery("#btnInit").click(initiate_geolocation);  
+				checkStorageSupport();
+			});  
+  
+			function initiate_geolocation() {  
+				navigator.geolocation.getCurrentPosition(handle_geolocation_query);  
+			}  
+  
+			function handle_geolocation_query(position){  
+				alert('Lat: ' + position.coords.latitude + ' ' +  
+					  'Lon: ' + position.coords.latitude); 
+			}
+			
+			function checkStorageSupport() {
+				//sessionStorage
+				if (window.sessionStorage) {
+					alert('This browser supports sessionStorage');
+				} else {
+					alert('This browser does NOT support sessionStorage');
+				}
+				//localStorage
+				if (window.localStorage) {
+					alert('This browser supports localStorage');
+				} else {
+					alert('This browser does NOT support localStorage');
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id='support'></div>
+		<button id="btnInit" >Find my location</button>  
+	</body>
+</html>

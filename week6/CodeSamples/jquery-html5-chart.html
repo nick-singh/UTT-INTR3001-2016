@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' ></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+		
+		<script type="text/javascript">
+			google.load("visualization", "1", {packages:["corechart"]});
+			//google.load("visualization", "1");
+			google.setOnLoadCallback(drawChart);
+			function drawChart(values) {
+				var options = {
+				  width: 400, height: 240,
+				  title: 'A Simple Line Graph'
+				};
+				var data = new google.visualization.DataTable();
+				data.addColumn('number', 'x');
+				data.addColumn('number', 'y');
+				
+				//values.x = values.x *1;
+				//values.y = values.y *1;
+				//data.addRows([[0,0],[values.x,values.y]]);
+				data.addRows([[0,0],[2,3]]);
+				
+				//alert("Attempting to draw chart");
+				var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+				chart.draw(data, options);
+			}
+			
+			function getValues(){
+				var xval = $('#x').val();
+				var yval = $('#y').val();
+				
+				var obj = {'x':xval, 'y':yval};
+				return obj;
+			}
+			
+			
+			$(document).ready(function(){
+				$('#submit').click(function(e){
+					points = getValues();
+					//alert(points);
+					drawChart(points);
+					
+					e.preventDefault();
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<form name='points' action='' method='get'>
+			<label>X</label><input id='x' type='text' name='x' />
+			<label>Y</label><input id='y' type='text' name='y' />
+			<button id='submit'> Submit</button>
+		</form>
+		
+		
+		<div id='chart_div'></div>
+	</body>
+</html>

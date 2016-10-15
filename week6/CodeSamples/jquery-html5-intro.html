@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' ></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+					var title = $("#title").html();
+					alert(title);
+					$('#modify').click(function(){modify();});
+				});
+			
+			function runCount(){
+				$('li').each(function() {
+						alert(this.html());
+				});
+			}
+			
+			function modify(){
+				$("#title").html("The Awesomest Book Title Ever");
+			}
+		</script>
+	</head>
+	<body>
+		
+		<span id="title">Easy Google Maps with jQuery, PHP and MySQL</span>
+		
+		<p>
+			Author: W. Jason Gilmore<br />
+			Learn how to create location-based websites using popular open source technologies and the
+			powerful Google	Maps API! Topics include:
+		</p>
+		<ul>
+		<li>Customizing your maps by tweaking controls, and adding markers and informational windows</li>
+		<li>Geocoding addresses, and managing large numbers of addresses within a database</li>
+		<li>How to build an active community by allowing users to contribute new locations</li>
+		</ul>
+		<button id='modify'>Modify</button>
+	</body>
+</html>
