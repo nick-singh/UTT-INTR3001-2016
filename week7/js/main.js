@@ -1,8 +1,6 @@
 (function(window, $, models) {
 
 
-
-
   // initialize personManager
   var personManager = new models.PersonManager();
 

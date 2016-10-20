@@ -57,6 +57,22 @@
             }
         }
 
+
+        public function getUserById($id){
+            $sql = "SELECT * from `users` WHERE id = :id";
+            try {
+                $conn = $this->db->getConnection();
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam('id', $id);
+                $stmt->execute();
+                $users = $stmt->fetchObject();
+                $conn = null;
+                return $users;
+            } catch (PDOException $e) {
+                return array('message' => $e->getMessage(), "status"=>500);
+            }
+        }
+
         public function addUser($data){
             $sql = "INSERT INTO `social`.`users`
                     ( `picture`, `age`, `firstName`, `lastName`, `gender`, `company`, `email`, `phone`, `address`, `about`, `registered`, `greeting`, `favoriteFruit`)

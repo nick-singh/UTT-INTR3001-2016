@@ -25,6 +25,16 @@ $app->post('/users', function($request, $response){
     return $response;
 });
 
+$app->get('/users/{id}', function($request, $response){
+
+    $id = $request->getAttribute('id');
+    $handler = DbHandler::getInstance();
+    $res = $handler->getUserById($id);
+
+    $response->write(json_encode($res));
+    return $response;
+});
+
 
 $app->delete('/users/{id}', function($request, $response){
 
