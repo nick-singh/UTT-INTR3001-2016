@@ -59,19 +59,21 @@
 
 
         public function getUserById($id){
-            $sql = "SELECT * from `users` WHERE id = :id";
+            $sql = "SELECT * FROM `users` WHERE id = :id";
             try {
                 $conn = $this->db->getConnection();
                 $stmt = $conn->prepare($sql);
                 $stmt->bindParam('id', $id);
                 $stmt->execute();
-                $users = $stmt->fetchObject();
+                $user = $stmt->fetchObject();
                 $conn = null;
-                return $users;
+
+                return $user;
             } catch (PDOException $e) {
                 return array('message' => $e->getMessage(), "status"=>500);
             }
         }
+
 
         public function addUser($data){
             $sql = "INSERT INTO `social`.`users`
@@ -99,6 +101,40 @@
                 $data[] = array('id' => $id);
                 $conn = null;
                 return array('status' => 200, "data"=> $data);
+
+            } catch(PDOException $e) {
+                return array('message' => $e->getMessage(), "status"=>500);
+            }
+        }
+
+
+
+        public function updateUser($id, $data){
+            $sql = "UPDATE `users` SET `picture`=:picture,`age`=:age,
+                    `firstName`=:firstName,`lastName`=:lastName,`gender`=:gender,
+                    `company`=:company,`email`=:email,`phone`=:phone,`address`=:address,
+                    `about`=:about,`greeting`=:greeting,`favoriteFruit`=:favoriteFruit
+                    where id = :id;";
+            try {
+                $conn = $this->db->getConnection();
+                $stmt = $conn->prepare($sql);
+                $stmt->bindParam('id', $id);
+                $stmt->bindParam('picture', $data['picture']);
+                $stmt->bindParam('age', $data['age']);
+                $stmt->bindParam('firstName', $data['firstName']);
+                $stmt->bindParam('lastName', $data['lastName']);
+                $stmt->bindParam('gender', $data['gender']);
+                $stmt->bindParam('company', $data['company']);
+                $stmt->bindParam('email', $data['email']);
+                $stmt->bindParam('phone', $data['phone']);
+                $stmt->bindParam('address', $data['address']);
+                $stmt->bindParam('about', $data['about']);
+                $stmt->bindParam('registered', $data['registered']);
+                $stmt->bindParam('greeting', $data['greeting']);
+                $stmt->bindParam('favoriteFruit', $data['favoriteFruit']);
+                $stmt->execute();
+                $conn = null;
+                return array('status' => 202);
 
             } catch(PDOException $e) {
                 return array('message' => $e->getMessage(), "status"=>500);

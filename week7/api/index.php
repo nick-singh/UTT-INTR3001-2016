@@ -25,11 +25,24 @@ $app->post('/users', function($request, $response){
     return $response;
 });
 
+
 $app->get('/users/{id}', function($request, $response){
 
     $id = $request->getAttribute('id');
     $handler = DbHandler::getInstance();
-    $res = $handler->getUserById($id);
+    $res = $handler->getuserById($id);
+
+    $response->write(json_encode($res));
+    return $response;
+});
+
+
+$app->put('/users/{id}', function($request, $response){
+
+    $id = $request->getAttribute('id');
+    $data = $request->getParsedBody();
+    $handler = DbHandler::getInstance();
+    $res = $handler->updateUser($id, $data);
 
     $response->write(json_encode($res));
     return $response;
